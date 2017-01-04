@@ -50,8 +50,7 @@ cec.on('REPORT_POWER_STATUS', function(packet, status) {
 
 cec.on('GIVE_PHYSICAL_ADDRESS', function() {
   if (!tvOn) {
-    tv_on();
-    tvOn = true;
+    cec.sendCommand(0xf0, CEC.Opcode.GIVE_DEVICE_POWER_STATUS);
   }
 });
 
