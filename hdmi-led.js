@@ -10,7 +10,7 @@ var CEC = nodecec.CEC;
 
 var cec = new NodeCec('node-cec-monitor');
 
-var tvOn= false;
+var tvOn = false;
 
 process.on('SIGINT', function() {
   if (cec != null) {
@@ -41,8 +41,10 @@ cec.once('ready', function(client) {
 cec.on('REPORT_POWER_STATUS', function(packet, status) {
   if (status == 0) {
     tv_on();
+    tvOn = true;
   } else if (status == 1) {
     tv_standby();
+    tvOn = false;
   }
 });
 
