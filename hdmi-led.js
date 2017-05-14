@@ -2,6 +2,7 @@ var Gpio = require('onoff').Gpio;
 var pin_red = 24;
 var pin_green = 23;
 var pin_blue = 22;
+var emptyFunc = function(){};
 
 var nodecec = require('node-cec');
 
@@ -22,15 +23,15 @@ process.on('SIGINT', function() {
 function tv_on() {
   console.log(' -- TV_ON -- ');
 
-  new Gpio(pin_red, 'out').write(0);
-  new Gpio(pin_blue, 'out').write(1);
+  new Gpio(pin_red, 'out').write(0, emptyFunc);
+  new Gpio(pin_blue, 'out').write(1, emptyFunc);
 }
 
 function tv_standby() {
   console.log(' -- TV_STANDBY -- ');
 
-  new Gpio(pin_red, 'out').write(1);
-  new Gpio(pin_blue, 'out').write(0);
+  new Gpio(pin_red, 'out').write(1, emptyFunc);
+  new Gpio(pin_blue, 'out').write(0, emptyFunc);
 }
 
 cec.once('ready', function(client) {
